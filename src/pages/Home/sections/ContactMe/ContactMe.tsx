@@ -52,10 +52,10 @@ const ContactMe = () => {
 
         emailjs
             .sendForm(
-                "service_2i2wvp4", 
-                "template_wlqvrhb",   
+                "service_2i2wvp4",
+                "template_wlqvrhb",
                 form.current,
-                "5yw2kd7Uw5PKwbuMI"   
+                "5yw2kd7Uw5PKwbuMI"
             )
             .then(() => {
                 setSuccess(true);
@@ -92,7 +92,8 @@ const ContactMe = () => {
 
                     <form ref={form} onSubmit={sendEmail}>
                         <Grid container spacing={3} mt={1}>
-                            <Grid item xs={12}>
+                            <Grid item xs={12}>  
+                                {/* Grid dando erro por alguma razao HAHAHAHAHOIFHDAOHF */}
                                 <TextField
                                     fullWidth
                                     name="user_name"

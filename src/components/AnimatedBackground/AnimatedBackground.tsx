@@ -1,6 +1,41 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 
+interface Point {
+  x: number;
+  y: number;
+  originX: number;
+  originY: number;
+  active?: number;
+  closest?: Point[];
+  circle?: Circle;
+}
+
+class Circle {
+  pos: Point;
+  radius: number;
+  color: string;
+  active: number;
+  ctx: CanvasRenderingContext2D;
+
+  constructor(pos: Point, rad: number, color: string, ctx: CanvasRenderingContext2D) {
+    this.pos = pos;
+    this.radius = rad;
+    this.color = color;
+    this.active = 0;
+    this.ctx = ctx;
+  }
+
+  draw() {
+    if (!this.active) return;
+    const { ctx } = this;
+    ctx.beginPath();
+    ctx.arc(this.pos.x, this.pos.y, this.radius, 0, 2 * Math.PI, false);
+    ctx.fillStyle = `rgba(156,217,249,${this.active})`;
+    ctx.fill();
+  }
+}
+
 const AnimatedBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -8,51 +43,62 @@ const AnimatedBackground: React.FC = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas?.getContext('2d');
-    const width = window.innerWidth;
-    const height = window.innerHeight;
 
     if (!canvas || !ctx) return;
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
 
     canvas.width = width;
     canvas.height = height;
 
-    let points: any[] = [];
-    let target = { x: width / 2, y: height / 2 };
+    const target: Point = {
+      x: width / 2,
+      y: height / 2,
+      originX: width / 2,
+      originY: height / 2,
+    };
+
+    let points: Point[] = [];
     let animateHeader = true;
 
     for (let x = 0; x < width; x += width / 20) {
       for (let y = 0; y < height; y += height / 20) {
         const px = x + Math.random() * (width / 20);
         const py = y + Math.random() * (height / 20);
-        const p = { x: px, originX: px, y: py, originY: py };
+        const p: Point = { x: px, originX: px, y: py, originY: py };
         points.push(p);
       }
     }
 
+    // Find closest points
     for (let i = 0; i < points.length; i++) {
-      let closest: any[] = [];
       const p1 = points[i];
+      const closest: Point[] = [];
+
       for (let j = 0; j < points.length; j++) {
         const p2 = points[j];
         if (p1 === p2) continue;
+
         if (closest.length < 5) {
           closest.push(p2);
         } else {
-          let maxDistIndex = 0;
           let maxDist = getDistance(p1, closest[0]);
+          let maxIndex = 0;
           for (let k = 1; k < 5; k++) {
             const dist = getDistance(p1, closest[k]);
             if (dist > maxDist) {
               maxDist = dist;
-              maxDistIndex = k;
+              maxIndex = k;
             }
           }
           const dist = getDistance(p1, p2);
           if (dist < maxDist) {
-            closest[maxDistIndex] = p2;
+            closest[maxIndex] = p2;
           }
         }
       }
+
       p1.closest = closest;
     }
 
@@ -76,8 +122,10 @@ const AnimatedBackground: React.FC = () => {
     };
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
     };
 
     window.addEventListener('mousemove', mouseMove);
@@ -88,25 +136,27 @@ const AnimatedBackground: React.FC = () => {
       if (!ctx) return;
 
       if (animateHeader) {
-        ctx.clearRect(0, 0, width, height);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < points.length; i++) {
           const p = points[i];
           const d = getDistance(target, p);
+
           if (d < 4000) {
             p.active = 0.3;
-            p.circle.active = 0.6;
+            p.circle!.active = 0.6;
           } else if (d < 20000) {
             p.active = 0.1;
-            p.circle.active = 0.3;
+            p.circle!.active = 0.3;
           } else if (d < 40000) {
             p.active = 0.02;
-            p.circle.active = 0.1;
+            p.circle!.active = 0.1;
           } else {
             p.active = 0;
-            p.circle.active = 0;
+            p.circle!.active = 0;
           }
+
           drawLines(ctx, p);
-          p.circle.draw();
+          p.circle!.draw();
         }
       }
 
@@ -121,7 +171,7 @@ const AnimatedBackground: React.FC = () => {
       window.removeEventListener('resize', resize);
     };
 
-    function shiftPoint(p: any) {
+    function shiftPoint(p: Point) {
       gsap.to(p, {
         duration: 1 + Math.random(),
         x: p.originX - 50 + Math.random() * 100,
@@ -131,8 +181,8 @@ const AnimatedBackground: React.FC = () => {
       });
     }
 
-    function drawLines(ctx: CanvasRenderingContext2D, p: any) {
-      if (!p.active) return;
+    function drawLines(ctx: CanvasRenderingContext2D, p: Point) {
+      if (!p.active || !p.closest) return;
       for (let i = 0; i < p.closest.length; i++) {
         ctx.beginPath();
         ctx.moveTo(p.x, p.y);
@@ -142,22 +192,8 @@ const AnimatedBackground: React.FC = () => {
       }
     }
 
-    function getDistance(p1: any, p2: any) {
+    function getDistance(p1: { x: number; y: number }, p2: { x: number; y: number }) {
       return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
-    }
-
-    function Circle(pos: any, rad: number, color: string, ctx: CanvasRenderingContext2D) {
-      this.pos = pos;
-      this.radius = rad;
-      this.color = color;
-      this.active = 0;
-      this.draw = () => {
-        if (!this.active) return;
-        ctx.beginPath();
-        ctx.arc(this.pos.x, this.pos.y, this.radius, 0, 2 * Math.PI, false);
-        ctx.fillStyle = `rgba(156,217,249,${this.active})`;
-        ctx.fill();
-      };
     }
   }, []);
 
