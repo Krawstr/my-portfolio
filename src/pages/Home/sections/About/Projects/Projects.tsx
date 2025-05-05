@@ -1,9 +1,9 @@
-import { styled, Box, Typography, Card, CardContent, CardMedia } from "@mui/material";
+import { styled, Box, Typography, Card, CardContent, CardMedia, useTheme, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
 import broaImage from "../../../../../assets/images/broa.png";
 import portfolioImage from "../../../../../assets/images/portfolio.png";
+import ohmproject from "../../../../../assets/images/leisdOhm.png";
 
-// Container principal
 const StyledProjects = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
     minHeight: "100vh",
@@ -18,9 +18,9 @@ const StyledProjects = styled("div")(({ theme }) => ({
     boxShadow: "0 4px 8px rgb(51, 91, 177)",
 }));
 
-// Card estilizado
 const ProjectCard = styled(Card)(({ theme }) => ({
-    width: 400,
+    width: "100%",
+    maxWidth: 400,
     margin: theme.spacing(2),
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[6],
@@ -33,43 +33,64 @@ const ProjectCard = styled(Card)(({ theme }) => ({
         transform: "scale(1.05)",
         boxShadow: theme.shadows[12],
     },
+    [theme.breakpoints.down("sm")]: {
+        margin: theme.spacing(2, 1),
+    },
 }));
 
-// Imagem
 const ProjectImage = styled(CardMedia)({
     height: 180,
+    objectFit: "cover",
 });
 
-// Dados dos projetos
 const projects = [
     {
         title: "Broa",
-        description: "Plataforma com foco na sustentabilidade e diminuição do disperdicio. Foi utilizado HTMl, CSS, JavaScript e C#.",
+        description: [
+            "Plataforma com foco na sustentabilidade e diminuição do disperdício.",
+            "Utilizou HTML, CSS, JavaScript e C#. Feito para o Demoday no Instituto Proa.",
+        ],
         image: broaImage,
-        link: "https://InfelizmenteBroaNãoestánoAr"
+        link: "https://InfelizmenteBroaNãofoideletado",
     },
     {
         title: "Portfólio",
-        description: "Meu portfólio pessoal com Typescriprt, React e MUI.",
+        description: "Meu portfólio pessoal feito com Typescript, React e MUI.",
         image: portfolioImage,
         link: "https://github.com/Krawstr/my-portifolio",
     },
-    
+    {
+        title: "Lei de Ohm",
+        description: "Projeto feito com HTML, CSS e JavaScript para NP1 da faculdade Unip. Explica as leis de Ohm.",
+        image: ohmproject,
+        link: "https://github.com/Krawstr/Leis-de-Ohm",
+    },
 ];
 
 const Projects = () => {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
     return (
         <StyledProjects>
-            <Typography variant="h3" gutterBottom sx={{ zIndex: 1 }}>
+            <Typography
+                variant={isMobile ? "h4" : "h3"}
+                gutterBottom
+                sx={{ zIndex: 1 }}
+            >
                 Meus Projetos
             </Typography>
+
             <Box
                 display="flex"
                 flexWrap="wrap"
                 justifyContent="center"
-                gap={4}
+                alignItems="stretch"
+                gap={isMobile ? 2 : 4}
                 mt={2}
                 zIndex={1}
+                width="100%"
+                maxWidth="1200px"
             >
                 {projects.map((project, index) => (
                     <motion.a
@@ -77,7 +98,7 @@ const Projects = () => {
                         href={project.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        style={{ textDecoration: "none" }}
+                        style={{ textDecoration: "none", flex: "1 1 300px", maxWidth: 400 }}
                         initial={{ opacity: 0, y: 50 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
@@ -92,9 +113,17 @@ const Projects = () => {
                                 <Typography variant="h6" gutterBottom>
                                     {project.title}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    {project.description}
-                                </Typography>
+                                {Array.isArray(project.description) ? (
+                                    project.description.map((line, i) => (
+                                        <Typography key={i} variant="body2" color="text.secondary" paragraph>
+                                            {line}
+                                        </Typography>
+                                    ))
+                                ) : (
+                                    <Typography variant="body2" color="text.secondary">
+                                        {project.description}
+                                    </Typography>
+                                )}
                             </CardContent>
                         </ProjectCard>
                     </motion.a>

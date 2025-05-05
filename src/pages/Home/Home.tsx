@@ -3,6 +3,8 @@ import NavBar from "../../components/NavBar/NavBar"
 import About from "./sections/About/About"
 import HardSkills from "./sections/About/Skills/HardSkills"
 import Projects from "./sections/About/Projects/Projects"
+import ContactMe from "./sections/ContactMe/ContactMe"
+import Footer from "../../components/Footer/Footer"
 
 const Home = () => {
 
@@ -13,6 +15,8 @@ const Home = () => {
       <About />
       <HardSkills />
       <Projects />
+      <ContactMe />
+      <Footer/>
     </>
   )
 }

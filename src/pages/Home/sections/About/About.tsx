@@ -86,7 +86,7 @@ const About = () => {
                     <Highlight>inteligência artificial</Highlight>.
                     <br />
                     <br />
-                    Tenho experiência com linguagens como <Highlight>JavaScript</Highlight>, <Highlight>HTML</Highlight>,{" "}
+                    Tenho experiência prática com linguagens como <Highlight>JavaScript</Highlight>, <Highlight>HTML</Highlight>,{" "}
                     <Highlight>CSS</Highlight> e <Highlight>C#</Highlight>, e estou sempre evoluindo tanto no aspecto técnico
                     quanto na resolução criativa de problemas.
                     <br />
