@@ -61,7 +61,7 @@ const projects = [
     },
     {
         title: "Lei de Ohm",
-        description: "Projeto feito com HTML, CSS e JavaScript para NP1 da faculdade Unip. Explica as leis de Ohm.",
+        description: "Projeto feito com HTML, CSS e JavaScript para NP1 da faculdade Unip. O objetivo do projeto era explica por meio de um site web o que são as leis de Ohm com exemplos práticos",
         image: ohmproject,
         link: "https://github.com/Krawstr/Leis-de-Ohm",
     },
