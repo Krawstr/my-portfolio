@@ -56,8 +56,8 @@ const HardSkills = () => {
         </Typography>
 
         <Grid container justifyContent="center">
-          {skills.map((skill, index) => (
-            <Grid item key={index} xs={6} sm={4} md={3}>
+          {skills.map((skill) => (
+            <Grid  component={motion.div}>
               <SkillBox>
                 <Box display="flex" flexDirection="column" alignItems="center">
                   <Box

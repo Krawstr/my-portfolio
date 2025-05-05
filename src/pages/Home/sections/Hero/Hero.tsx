@@ -50,12 +50,12 @@ const Hero = () => {
                     justifyContent="center"
                 >
 
-                    <Grid item xs={12} md={4} textAlign="center">
+                    <Grid textAlign="center">
                         <StyledImg src={Profile} alt="Profile" />
                     </Grid>
 
 
-                    <Grid item xs={12} md={8} textAlign={{ xs: "center", md: "left" }}>
+                    <Grid textAlign={{ xs: "center", md: "left" }}>
                         <Typography
                             color="primary.contrastText"
                             variant="h2"
@@ -78,13 +78,13 @@ const Hero = () => {
                             mt={2}
                             justifyContent={{ xs: "center", md: "flex-start" }}
                         >
-                            <Grid item>
+                            <Grid >
                                 <StyledButton onClick={() => window.open('https://drive.google.com/file/d/1IEO1NSl_hiInCL7yaJJPAMNG1Z2U8NpH/view', '_blank')}>
                                     <DownloadIcon style={{ marginRight: 8 }} />
                                     <Typography>Download CV</Typography>
                                 </StyledButton>
                             </Grid>
-                            <Grid item>
+                            <Grid >
                                 <StyledButton onClick={() => window.open('mailto:joaovictorseverianogram@gmail.com', '_blank')} >
                                     <MailOutlineIcon style={{ marginRight: 8 }} />
                                     <Typography>Me contate</Typography>

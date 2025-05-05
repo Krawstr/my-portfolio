@@ -92,8 +92,7 @@ const ContactMe = () => {
 
                     <form ref={form} onSubmit={sendEmail}>
                         <Grid container spacing={3} mt={1}>
-                            <Grid item xs={12}>  
-                                {/* Grid dando erro por alguma razao HAHAHAHAHOIFHDAOHF */}
+                            <Grid >  
                                 <TextField
                                     fullWidth
                                     name="user_name"
@@ -102,7 +101,7 @@ const ContactMe = () => {
                                     required
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid  >
                                 <TextField
                                     fullWidth
                                     name="user_email"
@@ -112,7 +111,7 @@ const ContactMe = () => {
                                     required
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid >
                                 <TextField
                                     fullWidth
                                     name="message"
@@ -123,30 +122,29 @@ const ContactMe = () => {
                                     required
                                 />
                             </Grid>
-                            <Grid item xs={12} textAlign="center">
-                                <StyledButton type="submit">
+                            <Grid textAlign="center">
+                                <StyledButton >
                                     <SendIcon style={{ marginRight: 8 }} />
                                     <Typography>Enviar</Typography>
                                 </StyledButton>
                             </Grid>
 
                             {success === true && (
-                                <Grid item xs={12}>
+                                <Grid >
                                     <Alert severity="success">
                                         Mensagem enviada com sucesso!
                                     </Alert>
                                 </Grid>
                             )}
                             {success === false && (
-                                <Grid item xs={12}>
+                                <Grid >
                                     <Alert severity="error">
                                         Erro ao enviar. Tente novamente.
                                     </Alert>
                                 </Grid>
                             )}
 
-                            {/* Redes Sociais */}
-                            <Grid item xs={12} textAlign="center">
+                            <Grid  textAlign="center">
                                 <Box
                                     display="flex"
                                     justifyContent={isMobile ? "center" : "center"}
