@@ -21,6 +21,8 @@ const StyledProjects = styled("div")(({ theme }) => ({
 const ProjectCard = styled(Card)(({ theme }) => ({
     width: "100%",
     maxWidth: 400,
+    height: "300px",
+    maxHeight: 300,
     margin: theme.spacing(2),
     backgroundColor: theme.palette.background.paper,
     boxShadow: theme.shadows[6],

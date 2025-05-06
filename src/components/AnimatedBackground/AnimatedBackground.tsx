@@ -71,7 +71,6 @@ const AnimatedBackground: React.FC = () => {
       }
     }
 
-    // Find closest points
     for (let i = 0; i < points.length; i++) {
       const p1 = points[i];
       const closest: Point[] = [];
@@ -102,7 +101,6 @@ const AnimatedBackground: React.FC = () => {
       p1.closest = closest;
     }
 
-    // Assign circles
     for (let i = 0; i < points.length; i++) {
       const circle = new Circle(points[i], 2 + Math.random() * 2, 'rgba(255,255,255,0.3)', ctx);
       points[i].circle = circle;

@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import {
     Box,
     Container,
-    Grid,
     Typography,
     TextField,
     styled,
@@ -10,13 +9,16 @@ import {
     useTheme,
     useMediaQuery,
 } from "@mui/material";
+import Grid from "@mui/material/Grid";
+
 import SendIcon from "@mui/icons-material/Send";
 import StyledButton from "../../../../components/StyledButton/StyledButton";
 import AnimatedBackground from "../../../../components/AnimatedBackground/AnimatedBackground";
 import emailjs from "@emailjs/browser";
+import contactMeImage from "../../../../assets/images/contactMeImage.png";
 
 const StyledContact = styled("div")(({ theme }) => ({
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.primary.main,
     minHeight: "100vh",
     display: "flex",
     alignItems: "center",
@@ -24,12 +26,12 @@ const StyledContact = styled("div")(({ theme }) => ({
     position: "relative",
     padding: theme.spacing(4),
     overflow: "hidden",
+    boxShadow: "0 4px 8px rgb(51, 91, 177)",
 }));
 
 const FormContainer = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.secondary.dark,
     borderRadius: theme.spacing(2),
-    boxShadow: theme.shadows[5],
     padding: theme.spacing(6),
     zIndex: 2,
     width: "100%",
@@ -37,6 +39,14 @@ const FormContainer = styled(Box)(({ theme }) => ({
     [theme.breakpoints.down("sm")]: {
         padding: theme.spacing(4),
     },
+    boxShadow: " 4px 8px rgba(43, 116, 59, 0.4)"
+}));
+
+const StyledImg = styled("img")(() => ({
+   position: "absolute",
+   right: "10%",
+   width: "37%",
+   bottom: "15%",
 }));
 
 const ContactMe = () => {
@@ -66,6 +76,7 @@ const ContactMe = () => {
 
     return (
         <StyledContact>
+            <StyledImg src={contactMeImage} alt="contact-me" />
             <Box
                 position="absolute"
                 top={0}
@@ -84,7 +95,7 @@ const ContactMe = () => {
                         variant={isMobile ? "h5" : "h4"}
                         fontWeight="bold"
                         gutterBottom
-                        color="primary.main"
+                        color="#000"
                         textAlign="center"
                     >
                         Entre em Contato
@@ -101,7 +112,7 @@ const ContactMe = () => {
                                     required
                                 />
                             </Grid>
-                            <Grid  >
+                            <Grid >
                                 <TextField
                                     fullWidth
                                     name="user_email"
@@ -137,7 +148,7 @@ const ContactMe = () => {
                                 </Grid>
                             )}
                             {success === false && (
-                                <Grid >
+                                <Grid>
                                     <Alert severity="error">
                                         Erro ao enviar. Tente novamente.
                                     </Alert>
