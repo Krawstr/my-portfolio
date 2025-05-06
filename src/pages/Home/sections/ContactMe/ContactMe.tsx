@@ -42,11 +42,15 @@ const FormContainer = styled(Box)(({ theme }) => ({
     boxShadow: " 4px 8px rgba(43, 116, 59, 0.4)"
 }));
 
-const StyledImg = styled("img")(() => ({
+const StyledImg = styled("img")(({ theme }) => ({
    position: "absolute",
    right: "10%",
    width: "37%",
    bottom: "15%",
+
+   [theme.breakpoints.down("sm")]: {
+    display: "none",
+  },
 }));
 
 const ContactMe = () => {

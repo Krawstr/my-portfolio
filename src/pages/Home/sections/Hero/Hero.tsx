@@ -14,6 +14,7 @@ const StyledHero = styled("div")(({ theme }) => ({
     position: "relative",
     padding: theme.spacing(4),
     overflow: "hidden",
+    boxShadow: "0 -8px 16px -4px rgba(51, 91, 177, 0.6)",
 
 }));
 
