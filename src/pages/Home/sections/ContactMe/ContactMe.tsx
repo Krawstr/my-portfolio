@@ -10,12 +10,10 @@ import {
     useMediaQuery,
 } from "@mui/material";
 import Grid from "@mui/material/Grid";
-
 import SendIcon from "@mui/icons-material/Send";
 import StyledButton from "../../../../components/StyledButton/StyledButton";
 import AnimatedBackground from "../../../../components/AnimatedBackground/AnimatedBackground";
 import emailjs from "@emailjs/browser";
-import contactMeImage from "../../../../assets/images/contactMeImage.png";
 
 const StyledContact = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
@@ -30,7 +28,7 @@ const StyledContact = styled("div")(({ theme }) => ({
 }));
 
 const FormContainer = styled(Box)(({ theme }) => ({
-    backgroundColor: theme.palette.secondary.dark,
+    backgroundImage: "linear-gradient(45deg,rgb(60, 34, 151), rgb(29, 116, 94))",
     borderRadius: theme.spacing(2),
     padding: theme.spacing(6),
     zIndex: 2,
@@ -39,19 +37,9 @@ const FormContainer = styled(Box)(({ theme }) => ({
     [theme.breakpoints.down("sm")]: {
         padding: theme.spacing(4),
     },
-    boxShadow: " 4px 8px rgba(43, 116, 59, 0.4)"
+    boxShadow: " 4px 8px rgba(12, 42, 49, 0.25)"
 }));
 
-const StyledImg = styled("img")(({ theme }) => ({
-   position: "absolute",
-   right: "10%",
-   width: "37%",
-   bottom: "15%",
-
-   [theme.breakpoints.down("sm")]: {
-    display: "none",
-  },
-}));
 
 const ContactMe = () => {
     const form = useRef<HTMLFormElement>(null);
@@ -80,7 +68,6 @@ const ContactMe = () => {
 
     return (
         <StyledContact>
-            <StyledImg src={contactMeImage} alt="contact-me" />
             <Box
                 position="absolute"
                 top={0}
@@ -94,105 +81,125 @@ const ContactMe = () => {
             </Box>
 
             <Container maxWidth="lg" sx={{ zIndex: 1 }}>
-                <FormContainer>
-                    <Typography
-                        variant={isMobile ? "h5" : "h4"}
-                        fontWeight="bold"
-                        gutterBottom
-                        color="#000"
-                        textAlign="center"
-                    >
-                        Entre em Contato
-                    </Typography>
+                <Box
+                    display="flex"
+                    flexDirection={isMobile ? "column" : "row"}
+                    alignItems="center"
+                    justifyContent="center"
+                    gap={4}
+                >
+                    {!isMobile && (
+                        <Box maxWidth="300px">
+                            <Typography variant="h4" color="#fff" textAlign={"left"}>
+                                Fique à vontade para enviar uma mensagem! Responderei o mais rápido possível.
+                            </Typography>
+                        </Box>
+                    )}
 
-                    <form ref={form} onSubmit={sendEmail}>
-                        <Grid container spacing={3} mt={1}>
-                            <Grid >  
-                                <TextField
-                                    fullWidth
-                                    name="user_name"
-                                    label="Nome"
-                                    variant="outlined"
-                                    required
-                                />
-                            </Grid>
-                            <Grid >
-                                <TextField
-                                    fullWidth
-                                    name="user_email"
-                                    label="Email"
-                                    type="email"
-                                    variant="outlined"
-                                    required
-                                />
-                            </Grid>
-                            <Grid >
-                                <TextField
-                                    fullWidth
-                                    name="message"
-                                    label="Mensagem"
-                                    multiline
-                                    rows={4}
-                                    variant="outlined"
-                                    required
-                                />
-                            </Grid>
-                            <Grid textAlign="center">
-                                <StyledButton >
-                                    <SendIcon style={{ marginRight: 8 }} />
-                                    <Typography>Enviar</Typography>
-                                </StyledButton>
-                            </Grid>
+                    <FormContainer>
+                        <Typography
+                            variant={isMobile ? "h5" : "h4"}
+                            fontWeight="bold"
+                            gutterBottom
+                            color="#000"
+                            textAlign="center"
+                        >
+                            Entre em Contato
+                        </Typography>
 
-                            {success === true && (
-                                <Grid >
-                                    <Alert severity="success">
-                                        Mensagem enviada com sucesso!
-                                    </Alert>
+                        <form ref={form} onSubmit={sendEmail}>
+                            <Grid container spacing={3} mt={1}>
+                                <Grid size={{ xs: 12, sm:6}}>
+                                    <TextField
+                                        fullWidth
+                                        name="user_name"
+                                        label="Nome"
+                                        variant="outlined"
+                                        required
+                                    />
                                 </Grid>
-                            )}
-                            {success === false && (
-                                <Grid>
-                                    <Alert severity="error">
-                                        Erro ao enviar. Tente novamente.
-                                    </Alert>
+                                <Grid size={{xs:12, sm:6}}>
+                                    <TextField
+                                        fullWidth
+                                        name="user_email"
+                                        label="Email"
+                                        type="email"
+                                        variant="outlined"
+                                        required
+                                    />
                                 </Grid>
-                            )}
-
-                            <Grid  textAlign="center">
-                                <Box
-                                    display="flex"
-                                    justifyContent={isMobile ? "center" : "center"}
-                                    gap={2}
-                                    mt={2}
-                                    flexDirection={isMobile ? "column" : "row"}
-                                >
-                                    <StyledButton
-                                        onClick={() => window.open("https://www.linkedin.com/in/joao-vs-grama/", "_blank")}
-                                    >
-                                        <img
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
-                                            alt="LinkedIn"
-                                            style={{ width: 24, height: 24, marginRight: 8 }}
-                                        />
-                                        <Typography>LinkedIn</Typography>
+                                <Grid size={12}>
+                                    <TextField
+                                        fullWidth
+                                        name="message"
+                                        label="Mensagem"
+                                        multiline
+                                        rows={4}
+                                        variant="outlined"
+                                        required
+                                    />
+                                </Grid>
+                                <Grid size={12} textAlign="center">
+                                    <StyledButton>
+                                        <SendIcon style={{ marginRight: 8 }} />
+                                        <Typography>Enviar</Typography>
                                     </StyledButton>
+                                </Grid>
 
-                                    <StyledButton
-                                        onClick={() => window.open("https://github.com/krawstr", "_blank")}
+                                {success === true && (
+                                    <Grid size={12}>
+                                        <Alert severity="success">
+                                            Mensagem enviada com sucesso!
+                                        </Alert>
+                                    </Grid>
+                                )}
+                                {success === false && (
+                                    <Grid size={12}>
+                                        <Alert severity="error">
+                                            Erro ao enviar. Tente novamente.
+                                        </Alert>
+                                    </Grid>
+                                )}
+
+                                <Grid size={12} textAlign="center">
+                                    <Box
+                                        display="flex"
+                                        justifyContent={isMobile ? "center" : "center"}
+                                        gap={2}
+                                        mt={2}
+                                        flexDirection={isMobile ? "column" : "row"}
                                     >
-                                        <img
-                                            src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
-                                            alt="GitHub"
-                                            style={{ width: 24, height: 24, marginRight: 8 }}
-                                        />
-                                        <Typography>GitHub</Typography>
-                                    </StyledButton>
-                                </Box>
+                                        <StyledButton
+                                            onClick={() =>
+                                                window.open("https://www.linkedin.com/in/joao-vs-grama/", "_blank")
+                                            }
+                                        >
+                                            <img
+                                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                                                alt="LinkedIn"
+                                                style={{ width: 24, height: 24, marginRight: 8 }}
+                                            />
+                                            <Typography>LinkedIn</Typography>
+                                        </StyledButton>
+
+                                        <StyledButton
+                                            onClick={() =>
+                                                window.open("https://github.com/krawstr", "_blank")
+                                            }
+                                        >
+                                            <img
+                                                src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+                                                alt="GitHub"
+                                                style={{ width: 24, height: 24, marginRight: 8 }}
+                                            />
+                                            <Typography>GitHub</Typography>
+                                        </StyledButton>
+                                    </Box>
+                                </Grid>
                             </Grid>
-                        </Grid>
-                    </form>
-                </FormContainer>
+                        </form>
+                    </FormContainer>
+                </Box>
             </Container>
         </StyledContact>
     );
