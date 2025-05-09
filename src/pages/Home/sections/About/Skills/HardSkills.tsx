@@ -13,7 +13,6 @@ import {
   FaHtml5,
   FaCss3Alt,
   FaPython,
-  FaGitAlt,
   FaDatabase,
 } from "react-icons/fa";
 import { TbBrandCSharp } from "react-icons/tb";
@@ -25,7 +24,6 @@ const skills = [
   { name: "CSS3", icon: <FaCss3Alt />, color: "#1572B6" },
   { name: "C#", icon: <TbBrandCSharp />, color: "#68217A" },
   { name: "Python", icon: <FaPython />, color: "#3776AB" },
-  { name: "Git", icon: <FaGitAlt />, color: "#F05032" },
   { name: "SQL", icon: <FaDatabase />, color: "#00758F" },
 ];
 

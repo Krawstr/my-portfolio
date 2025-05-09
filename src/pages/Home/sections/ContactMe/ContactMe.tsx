@@ -88,13 +88,6 @@ const ContactMe = () => {
                     justifyContent="center"
                     gap={4}
                 >
-                    {!isMobile && (
-                        <Box maxWidth="300px">
-                            <Typography variant="h4" color="#fff" textAlign={"left"}>
-                                Fique à vontade para enviar uma mensagem! Responderei o mais rápido possível.
-                            </Typography>
-                        </Box>
-                    )}
 
                     <FormContainer>
                         <Typography
@@ -109,7 +102,7 @@ const ContactMe = () => {
 
                         <form ref={form} onSubmit={sendEmail}>
                             <Grid container spacing={3} mt={1}>
-                                <Grid size={{ xs: 12, sm:6}}>
+                                <Grid size={{ xs: 12, sm: 6 }}>
                                     <TextField
                                         fullWidth
                                         name="user_name"
@@ -118,7 +111,7 @@ const ContactMe = () => {
                                         required
                                     />
                                 </Grid>
-                                <Grid size={{xs:12, sm:6}}>
+                                <Grid size={{ xs: 12, sm: 6 }}>
                                     <TextField
                                         fullWidth
                                         name="user_email"
@@ -199,6 +192,14 @@ const ContactMe = () => {
                             </Grid>
                         </form>
                     </FormContainer>
+
+                    {!isMobile && (
+                        <Box maxWidth="300px" margin={"40px"}>
+                            <Typography variant="h4" color="#fff" textAlign={"left"}>
+                                Fique à vontade para enviar uma mensagem! Responderei o mais rápido possível.
+                            </Typography>
+                        </Box>
+                    )}
                 </Box>
             </Container>
         </StyledContact>
