@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import broaImage from "../../../../../assets/images/broa.png";
 import portfolioImage from "../../../../../assets/images/portfolio.png";
 import ohmproject from "../../../../../assets/images/leisdOhm.png";
+import emergia from "../../../../../assets/images/emergia.png";
 
 const StyledProjects = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
@@ -46,6 +47,28 @@ const ProjectImage = styled(CardMedia)({
 });
 
 const projects = [
+
+     {
+        title: "Emergia",
+        description: "Site que explica de forma intuitiva o funcionamento da emergia. Feito com HTML, CSS e JavaScript.",
+        image: emergia,
+        link: "https://github.com/Krawstr/emergia-unip.git",
+    },
+
+    {
+        title: "Portfólio",
+        description: "Meu portfólio pessoal feito com Typescript, React e MUI.",
+        image: portfolioImage,
+        link: "https://github.com/Krawstr/my-portifolio",
+    },
+
+    {
+        title: "Lei de Ohm",
+        description: "Projeto feito com HTML, CSS e JavaScript para NP1 da faculdade Unip. O objetivo do projeto era explica por meio de um site web o que são as leis de Ohm com exemplos práticos",
+        image: ohmproject,
+        link: "https://github.com/Krawstr/Leis-de-Ohm",
+    },
+
     {
         title: "Broa",
         description: [
@@ -54,19 +77,8 @@ const projects = [
         ],
         image: broaImage,
         link: "https://InfelizmenteBroaNãofoideletado",
-    },
-    {
-        title: "Portfólio",
-        description: "Meu portfólio pessoal feito com Typescript, React e MUI.",
-        image: portfolioImage,
-        link: "https://github.com/Krawstr/my-portifolio",
-    },
-    {
-        title: "Lei de Ohm",
-        description: "Projeto feito com HTML, CSS e JavaScript para NP1 da faculdade Unip. O objetivo do projeto era explica por meio de um site web o que são as leis de Ohm com exemplos práticos",
-        image: ohmproject,
-        link: "https://github.com/Krawstr/Leis-de-Ohm",
-    },
+    }
+
 ];
 
 const Projects = () => {
