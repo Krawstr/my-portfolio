@@ -4,6 +4,7 @@ import broaImage from "../../../../../assets/images/broa.png";
 import portfolioImage from "../../../../../assets/images/portfolio.png";
 import ohmproject from "../../../../../assets/images/leisdOhm.png";
 import emergia from "../../../../../assets/images/emergia.png";
+import LanhChain from "../../../../assets/images/langchain.png";    
 
 const StyledProjects = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
@@ -48,7 +49,14 @@ const ProjectImage = styled(CardMedia)({
 
 const projects = [
 
-     {
+    {
+        title: "Pipeline de Vetorização de Documentos com Python e LangChain",
+        description: "Desenvolvi um pipeline automatizado para processar arquivos PDF e prepará-los para aplicações de Inteligência Artificial (RAG). A solução realiza a segmentação de texto e a criação de embeddings com a API do Google, armazenando os resultados em um banco de dados vetorial ChromaDB de forma eficiente e escalável.",
+        image: LanhChain,
+        link: "https://github.com/Krawstr/pdf-rag-langchain-gemini",
+    },
+
+    {
         title: "Emergia",
         description: "Site que explica de forma intuitiva o funcionamento da emergia. Feito com HTML, CSS e JavaScript.",
         image: emergia,
