@@ -1,10 +1,5 @@
 import { styled, Box, Typography, Card, CardContent, CardMedia, useTheme, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
-import broaImage from "../../../../../assets/images/broa.png";
-import portfolioImage from "../../../../../assets/images/portfolio.png";
-import ohmproject from "../../../../../assets/images/leisdOhm.png";
-import emergia from "../../../../../assets/images/emergia.png";
-import langchain from "../../../../../assets/images/langchain.png";    
 
 const StyledProjects = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
