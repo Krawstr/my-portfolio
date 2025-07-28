@@ -1,5 +1,7 @@
 import { styled, Box, Typography, Card, CardContent, CardMedia, useTheme, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
+import langchain from "../../../../../assets/images/langchain.png";
+
 
 const StyledProjects = styled("div")(({ theme }) => ({
     backgroundColor: theme.palette.primary.main,
@@ -46,7 +48,7 @@ const projects = [
     {
         title: "Pipeline de Vetorização de Documentos com Python e LangChain",
         description: "Desenvolvi um pipeline automatizado para processar arquivos PDF e prepará-los para aplicações de Inteligência Artificial (RAG). A solução realiza a segmentação de texto e a criação de embeddings com a API do Google, armazenando os resultados em um banco de dados vetorial ChromaDB de forma eficiente e escalável.",
-        image: "../../../../../assets/images/LangChain.png",
+        image: langchain,
         link: "https://github.com/Krawstr/pdf-rag-langchain-gemini",
     },
     {
