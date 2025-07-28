@@ -48,45 +48,39 @@ const ProjectImage = styled(CardMedia)({
 });
 
 const projects = [
-
     {
         title: "Pipeline de Vetorização de Documentos com Python e LangChain",
         description: "Desenvolvi um pipeline automatizado para processar arquivos PDF e prepará-los para aplicações de Inteligência Artificial (RAG). A solução realiza a segmentação de texto e a criação de embeddings com a API do Google, armazenando os resultados em um banco de dados vetorial ChromaDB de forma eficiente e escalável.",
-        image: langchain,
+        image: "/images/langchain.png",
         link: "https://github.com/Krawstr/pdf-rag-langchain-gemini",
     },
-
     {
         title: "Emergia",
         description: "Site que explica de forma intuitiva o funcionamento da emergia. Feito com HTML, CSS e JavaScript.",
-        image: emergia,
+        image: "/images/emergia.png",
         link: "https://github.com/Krawstr/emergia-unip.git",
     },
-
     {
         title: "Portfólio",
         description: "Meu portfólio pessoal feito com Typescript, React e MUI.",
-        image: portfolioImage,
+        image: "/images/portfolio.png",
         link: "https://github.com/Krawstr/my-portifolio",
     },
-
     {
         title: "Lei de Ohm",
         description: "Projeto feito com HTML, CSS e JavaScript para NP1 da faculdade Unip. O objetivo do projeto era explica por meio de um site web o que são as leis de Ohm com exemplos práticos",
-        image: ohmproject,
+        image: "/images/leisdOhm.png",
         link: "https://github.com/Krawstr/Leis-de-Ohm",
     },
-
     {
         title: "Broa",
         description: [
             "Plataforma com foco na sustentabilidade e diminuição do disperdício.",
             "Utilizou HTML, CSS, JavaScript e C#. Feito para o Demoday no Instituto Proa.",
         ],
-        image: broaImage,
-        link: "https://InfelizmenteBroaFoiDeletado",
+        image: "/images/broa.png",
+        link: "#",
     }
-
 ];
 
 const Projects = () => {
