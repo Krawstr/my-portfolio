@@ -1,6 +1,6 @@
 import { styled, Box, Typography, Card, CardContent, CardMedia, useTheme, useMediaQuery } from "@mui/material";
 import { motion } from "framer-motion";
-import langchain from "../../../../../assets/images/langchain.png";
+import langchain from "../../../../../assets/images/LangChain.png";
 
 
 const StyledProjects = styled("div")(({ theme }) => ({
