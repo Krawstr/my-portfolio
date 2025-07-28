@@ -46,7 +46,7 @@ const projects = [
     {
         title: "Pipeline de Vetorização de Documentos com Python e LangChain",
         description: "Desenvolvi um pipeline automatizado para processar arquivos PDF e prepará-los para aplicações de Inteligência Artificial (RAG). A solução realiza a segmentação de texto e a criação de embeddings com a API do Google, armazenando os resultados em um banco de dados vetorial ChromaDB de forma eficiente e escalável.",
-        image: "/images/langchain.png",
+        image: "../../../../../assets/images/langchain.png",
         link: "https://github.com/Krawstr/pdf-rag-langchain-gemini",
     },
     {
